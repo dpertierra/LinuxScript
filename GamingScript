@@ -3,7 +3,7 @@ if [ $EUID -ne 0 ]; then
     echo "$0 is not running as root. Try using sudo."
     exit 2
 fi
-sudo apt install curl wget -y
+sudo apt install curl wget -y -q
 sudo dpkg --add-architecture i386 #Adding support for 32bit architecture
 # Define the menu list here
 
@@ -70,7 +70,7 @@ sudo apt-get install libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libx
 sudo apt-get install lutris -y
 
 #Gamemode
-sudo apt install meson libsystemd-dev pkg-config ninja-build git libdbus-1-dev libinih-dev dbus-user-session -y
+sudo apt install meson libsystemd-dev pkg-config ninja-build git libdbus-1-dev libinih-dev dbus-user-session -y -q
 
 git clone https://github.com/FeralInteractive/gamemode.git
 cd gamemode
