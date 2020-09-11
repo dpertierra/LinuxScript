@@ -41,7 +41,7 @@ done
 
 # Declare the array
 PS3="Select your graphics: "
-select graphics in AMD Nvidia
+select graphics in AMD Nvidia Integrated
 do
 	case $graphics in AMD)
 	echo 'Installing AMD drivers and enabling ACO compiler'
@@ -58,6 +58,9 @@ do
 	sudo add-apt-repository ppa:graphics-drivers/ppa -y
 	sudo apt update
 	sudo apt install nvidia-driver-450 libnvidia-gl-450 libnvidia-gl-450:i386 libvulkan1 libvulkan1:i386 -y
+	break
+	;;
+	Integrated)
 	break
 	;;
 	esac
@@ -89,14 +92,18 @@ echo 'Installing Steam'
 sudo apt install steam
 
 #Custom Proton
-dir = "$HOME/.steam"
-if [ -d $dir ]; then
-	echo 'Installing Custom Proton'
-	cd ~
-	wget https://raw.githubusercontent.com/Termuellinator/ProtonUpdater/master/cproton.sh
-	sudo chmod +x cproton.sh
-	./cproton.sh
+user=$(logname)
+dir="/home/$user/.steam"
+if [ ! -d $dir ]; then 
+	echo 'Launching steam so it creates the config folder'
+	steam
 fi
+clear
+echo 'Installing Custom Proton'
+cd ~
+wget https://raw.githubusercontent.com/Termuellinator/ProtonUpdater/master/cproton.sh
+sudo chmod +x cproton.sh
+sudo -u $user ./cproton.sh
 
 
 #Legendary
