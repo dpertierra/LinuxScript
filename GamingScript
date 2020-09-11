@@ -16,16 +16,19 @@ do
 	break
 	;;
 	Xanmod)
+	echo 'Installing Xanmod Kernel'
 	echo 'deb http://deb.xanmod.org releases main' | sudo tee /etc/apt/sources.list.d/xanmod-kernel.list && wget -qO - https://dl.xanmod.org/gpg.key | sudo apt-key add -
 	sudo apt update && sudo apt install linux-xanmod -y
 	break
 	;;
 	Liquorix)
+	echo 'Installing Liquorix Kernel'
 	sudo add-apt-repository ppa:damentz/liquorix && sudo apt-get update -y
 	sudo apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64 -y
 	break
 	;;
 	UbuntuMainline-BleedingEdge)
+	echo 'Installing Ubuntu Mainline Bleeding Edge Kernel'
 	wget https://raw.githubusercontent.com/pimlie/ubuntu-mainline-kernel.sh/master/ubuntu-mainline-kernel.sh
 	chmod +x ubuntu-mainline-kernel.sh
 	sudo mv ubuntu-mainline-kernel.sh /usr/local/bin/
@@ -41,6 +44,7 @@ PS3="Select your graphics: "
 select graphics in AMD Nvidia
 do
 	case $graphics in AMD)
+	echo 'Installing AMD drivers and enabling ACO compiler'
 	sudo add-apt-repository ppa:kisak/kisak-mesa -y
 	sudo apt update
 	sudo apt install libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 -y
@@ -50,6 +54,7 @@ do
 	break
 	;;
 	Nvidia)
+	echo 'Installing Nvidia Drivers'
 	sudo add-apt-repository ppa:graphics-drivers/ppa -y
 	sudo apt update
 	sudo apt install nvidia-driver-450 libnvidia-gl-450 libnvidia-gl-450:i386 libvulkan1 libvulkan1:i386 -y
@@ -60,6 +65,7 @@ done
 
 
 #Wine and Lutris dependencies
+echo 'Installing Wine and Lutris'
 wget -nc https://dl.winehq.org/wine-builds/winehq.key
 sudo apt-key add winehq.key
 sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' -y
@@ -70,6 +76,7 @@ sudo apt-get install libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libx
 sudo apt-get install lutris -y
 
 #Gamemode
+echo 'Installing Gamemode'
 sudo apt install meson libsystemd-dev pkg-config ninja-build git libdbus-1-dev libinih-dev dbus-user-session -y -q
 
 git clone https://github.com/FeralInteractive/gamemode.git
@@ -78,12 +85,14 @@ git checkout 1.5.1 # omit to build the master branch
 ./bootstrap.sh
 
 #Custom Proton
+echo 'Installing Custom Proton'
 cd ~
 wget https://raw.githubusercontent.com/Termuellinator/ProtonUpdater/master/cproton.sh
 sudo chmod +x cproton.sh
 ./cproton.sh
 
 #Legendary
+echo 'Installing Legendary'
 curl https://github.com/derrod/legendary/releases/download/0.20.1/legendary -o /usr/bin/legendary
 chmod +x /usr/bin/legendary
 
