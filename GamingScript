@@ -84,12 +84,20 @@ cd gamemode
 git checkout 1.5.1 # omit to build the master branch
 ./bootstrap.sh
 
+#Install steam
+echo 'Installing Steam'
+sudo apt install steam
+
 #Custom Proton
-echo 'Installing Custom Proton'
-cd ~
-wget https://raw.githubusercontent.com/Termuellinator/ProtonUpdater/master/cproton.sh
-sudo chmod +x cproton.sh
-./cproton.sh
+dir = "$HOME/.steam"
+if [ -d $dir ]; then
+	echo 'Installing Custom Proton'
+	cd ~
+	wget https://raw.githubusercontent.com/Termuellinator/ProtonUpdater/master/cproton.sh
+	sudo chmod +x cproton.sh
+	./cproton.sh
+fi
+
 
 #Legendary
 echo 'Installing Legendary'
