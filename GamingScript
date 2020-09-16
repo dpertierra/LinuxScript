@@ -94,12 +94,13 @@ sudo apt install steam
 user=$(logname)
 dir="/home/$user/.steam"
 cont=0
-while [ $cont -eq 0 ]
+while [ $cont -le 1 ]
 do
 	if [  ! -d $dir ]; then
-		echo 'Please launch steam so it creates the configuration folders'
+		if [ $cont -eq 0 ]
+			echo 'Please launch steam so it creates the configuration folders'
 	else
-		$cont = 1	
+		$cont = 2	
 	fi
 	
 done 
