@@ -98,20 +98,22 @@ while [ ! -d $dir ]
 do
 	if [  $index -eq 0 ]; then
 		echo 'Please launch steam so it creates the configuration folders'
-		$index=1
+		index=1
 	fi
 done 
 
 echo 'Installing Custom Proton'
-cd ~
-wget https://raw.githubusercontent.com/Termuellinator/ProtonUpdater/master/cproton.sh
-sudo chmod +x cproton.sh
-sudo -u $user ./cproton.sh
+cd /home/$user/
+wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/5.9-GE-5-ST/Proton-5.9-GE-5-ST.tar.gz -o /home/$user/Proton-5.9-GE-5-ST.tar.gz
+if [ ! -d $dir/root/compatibilitytools.d ]; then
+	mkdir $dir/root/compatibilitytools.d
+fi
+tar -xvjf /home/$user/Proton-5.9-GE-5-ST.tar.gz -C $dir/root/compatibilitytools.d/ 
 
 
 #Legendary
 echo 'Installing Legendary'
-curl https://github.com/derrod/legendary/releases/download/0.20.1/legendary -o /usr/bin/legendary
+sudo wget https://github.com/derrod/legendary/releases/download/0.20.1/legendary -o /usr/bin/legendary
 chmod +x /usr/bin/legendary
 
 
