@@ -99,6 +99,7 @@ do
 	if [  ! -d $dir ]; then
 		if [ $cont -eq 0 ]
 			echo 'Please launch steam so it creates the configuration folders'
+		fi
 	else
 		$cont = 2	
 	fi
