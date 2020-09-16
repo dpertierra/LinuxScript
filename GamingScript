@@ -93,18 +93,15 @@ sudo apt install steam
 #Custom Proton
 user=$(logname)
 dir="/home/$user/.steam"
-cont=0
-while [ $cont -le 1 ]
+index=0
+while [ ! -d $dir ]
 do
-	if [  ! -d $dir ]; then
-		if [ $cont -eq 0 ]; then
-			echo 'Please launch steam so it creates the configuration folders'
-		fi
-	else
-		$cont = 2	
+	if [  $index -eq 0 ]; then
+		echo 'Please launch steam so it creates the configuration folders'
+		$index=1
 	fi
-	
 done 
+
 echo 'Installing Custom Proton'
 cd ~
 wget https://raw.githubusercontent.com/Termuellinator/ProtonUpdater/master/cproton.sh
