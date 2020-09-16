@@ -8,7 +8,7 @@ sudo dpkg --add-architecture i386 #Adding support for 32bit architecture
 # Define the menu list here
 
 
-# Declare the array
+
 PS3="Select Kernel the desired Kernel: "
 select kernel in Standard Xanmod Liquorix UbuntuMainline-BleedingEdge
 do
@@ -39,7 +39,6 @@ do
 done
 
 
-# Declare the array
 PS3="Select your graphics: "
 select graphics in AMD Nvidia Integrated
 do
@@ -95,12 +94,14 @@ sudo apt install steam
 user=$(logname)
 dir="/home/$user/.steam"
 cont=0
-while [ ! -d $dir ]
+while [ $cont -eq 0 ]
 do
-	if [ $cont -eq 0 ]; then
+	if [  ! -d $dir ]; then
 		echo 'Please launch steam so it creates the configuration folders'
+	else
+		$cont = 1	
 	fi
-	$cont = $cont + 1
+	
 done 
 echo 'Installing Custom Proton'
 cd ~
