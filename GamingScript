@@ -108,7 +108,7 @@ wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/5.9-G
 if [ ! -d $dir/root/compatibilitytools.d ]; then
 	mkdir $dir/root/compatibilitytools.d
 fi
-tar -xvjf /home/$user/Proton-5.9-GE-5-ST.tar.gz -C $dir/root/compatibilitytools.d/ 
+tar -xzf /home/$user/Proton-5.9-GE-5-ST.tar.gz -C $dir/root/compatibilitytools.d/ 
 
 
 #Legendary
