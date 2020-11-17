@@ -1,9 +1,9 @@
 #!/bin/bash
-echo ********************************************************
-echo Fix Media Foundation DLL issue
-echo ********************************************************
-read -p 'Enter the full path to your steamapps folder inside your steam library folder' steamapps
-read -p 'Enter the app id of the game you want to fix the Media Foundation DLL' appid
+echo "********************************************************************************"
+echo "                        Fix Media Foundation DLL issue                          "
+echo "********************************************************************************"
+read -p 'Enter the full path to your steamapps folder inside your steam library folder: ' steamapps
+read -p 'Enter the app id of the game you want to fix the Media Foundation DLL: ' appid
 export WINEARCH=win64
 export WINEPREFIX="$steamapps/compatdata/$appid/pfx"
 export PROTON="$steamapps/common/Proton 5.0/"
@@ -15,3 +15,6 @@ cd ..
 git clone https://github.com/z0z0z/mf-installcab
 cd mf-installcab
 WINEPREFIX="$steamapps/compatdata/$appid/pfx" ./install-mf-64.sh
+
+rm -r ~/Downloads/mf-install
+rm -r ~/Downloads/mf-installcab
