@@ -1,9 +1,11 @@
 #!/bin/bash
-echo "**********************************************************************************"
-echo "                        Fix Media Foundation DLL issue                            "
-echo "**********************************************************************************"
-read -p 'Enter the full path to your steamapps folder inside your steam library folder: ' steamapps
-read -p 'Enter the app id of the game you want to fix the Media Foundation DLL: ' appid
+echo "**********************************************************************************************************************************************************"
+echo "                                                      Fix Media Foundation DLL issue                                                                      "
+echo "**********************************************************************************************************************************************************"
+read -p "Enter the full path to your steamapps folder inside your steam library folder (Leave this empty if your steam library is in $HOME/.steam) `echo $'\n>'` " steamapps
+read -p "Enter the app id of the game you want to fix the Media Foundation DLL: " appid
+[[ -z "$steamapps" ]] && steamapps="$HOME/.steam/steam/steamapps"
+
 export WINEARCH=win64
 export WINEPREFIX="$steamapps/compatdata/$appid/pfx"
 export PROTON="$steamapps/common/Proton 5.0/"
