@@ -4,11 +4,11 @@ if [ $EUID -ne 0 ]; then
     exit 2
 fi
 sudo apt install curl wget -y -q
+echo "Installing support for microsoft fonts please accept EULA"
+sudo apt install ttf-mscorefonts-installer -y
+wget -qO- http://plasmasturm.org/code/vistafonts-installer/vistafonts-installer | bash #Installing microsoft fonts
 sudo dpkg --add-architecture i386 #Adding support for 32bit architecture
 # Define the menu list here
-
-
-
 PS3="Select Kernel the desired Kernel: "
 select kernel in Standard Xanmod Liquorix UbuntuMainline-BleedingEdge
 do
@@ -49,7 +49,7 @@ do
 	sudo apt install libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 -y
 	filename='/etc/environment'
 	aco='RADV_PERFTEST=aco'
-	echo $aco >> $filename 
+	echo $aco >> $filename
 	break
 	;;
 	Nvidia)
@@ -100,7 +100,7 @@ do
 		echo 'Please launch steam so it creates the configuration folders'
 		index=1
 	fi
-done 
+done
 
 echo 'Installing Custom Proton'
 cd /home/$user/
@@ -108,15 +108,10 @@ wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/5.9-G
 if [ ! -d $dir/root/compatibilitytools.d ]; then
 	mkdir $dir/root/compatibilitytools.d
 fi
-tar -xzf /home/$user/Proton-5.9-GE-5-ST.tar.gz -C $dir/root/compatibilitytools.d/ 
+tar -xzf /home/$user/Proton-5.9-GE-5-ST.tar.gz -C $dir/root/compatibilitytools.d/
 
 
 #Legendary
 echo 'Installing Legendary'
 sudo wget https://github.com/derrod/legendary/releases/download/0.20.1/legendary -o /usr/bin/legendary
 chmod +x /usr/bin/legendary
-
-
-
-
-
